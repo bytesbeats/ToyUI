@@ -1,0 +1,51 @@
+@import "https://at.alicdn.com/t/c/font_4752690_ft5sq9v23bh.css";
+
+.zcg-icon {
+  display: inline-block;
+  font-size: 16px;
+  color: inherit;
+
+  &.icon-xs {
+    font-size: 12px;
+  }
+
+  &.icon-sm {
+    font-size: 14px;
+  }
+
+  &.icon-md {
+    font-size: 16px;
+  }
+
+  &.icon-lg {
+    font-size: 20px;
+  }
+
+  &.icon-xl {
+    font-size: 24px;
+  }
+
+  &.icon-primary {
+    color: var(--color-primary);
+  }
+
+  &.icon-secondary {
+    color: var(--color-secondary);
+  }
+
+  &.icon-success {
+    color: var(--color-success);
+  }
+
+  &.icon-warning {
+    color: var(--color-warning);
+  }
+
+  &.icon-danger {
+    color: var(--color-danger);
+  }
+
+  &.icon-info {
+    color: var(--color-info);
+  }
+}

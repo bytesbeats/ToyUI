@@ -1,37 +1,30 @@
 import React from "react";
-import Link, { LinkProps } from "./Link";
+import Link from ".";
+import Icon, { IconSize } from "../Icon";
+import type { Meta, StoryObj } from "@storybook/react";
 
-export default {
+const LinkAction = {
+  onJumpBefore: async () => {
+    console.log("onJumpBefore");
+  },
+  onJumpAfter: async () => {
+    console.log("onJumpAfter");
+  },
+};
+
+const meta: Meta<typeof Link> = {
   component: Link,
-  title: "Link",
 };
 
-const Template = (args: LinkProps) => <Link {...args}>{args.children}</Link>;
+type LinkStory = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-
-Default.arguments = {
-  children: "Link",
-};
-
-export const WithComponent = Template.bind({});
-
-WithComponent.arguments = {
-  children: <div>Link</div>,
-  onClick: () => {
-    console.log("clicked");
+export const Primary: LinkStory = {
+  args: {
+    ...LinkAction,
+    children: "link",
+    href: "",
+    icon: <Icon name="x_guanzhu" size={IconSize.MD} />,
   },
 };
 
-export const WithEvent = Template.bind({});
-
-WithEvent.arguments = {
-  ...Default.arguments,
-  children: "Link",
-  bindClick: () => {
-    console.log("with Event clicked");
-  },
-  onClick: (e: MouseEvent) => {
-    WithEvent.arguments?.bindClick?.(e);
-  },
-};
+export default meta;
