@@ -1,19 +1,26 @@
 import React, { ReactNode } from "react";
 import NextLink, { LinkProps as BaseProps } from "next/link";
-
-import "./style.css";
 import { useRouter } from "next/navigation";
+import "./style.css";
 
 export type LinkProps = BaseProps & {
   children: ReactNode | undefined;
   onJumpBefore?: () => Promise<void | undefined>;
   onJumpAfter?: () => Promise<void | undefined>;
   icon?: ReactNode | undefined;
+  className?: string;
 };
 
 const Link = ({ children, ...props }: LinkProps) => {
   const router = useRouter();
-  const { href, icon, onJumpBefore, onJumpAfter, ...rest } = props;
+  const {
+    href,
+    icon,
+    onJumpBefore,
+    onJumpAfter,
+    className: cls,
+    ...rest
+  } = props;
   // use jump href url before event
   const handleJumpBefore = async () => {
     if (onJumpBefore) {
@@ -31,8 +38,8 @@ const Link = ({ children, ...props }: LinkProps) => {
   return (
     <NextLink
       {...rest}
-      className="Link"
-      href="Void(0)"
+      className={`Link link link-hover ${cls}`}
+      href={href}
       onClick={async (e) => {
         e.preventDefault();
         await handleJumpBefore();
@@ -40,10 +47,10 @@ const Link = ({ children, ...props }: LinkProps) => {
         await handleJumpAfter();
       }}
     >
-      <div className="flex space-x-1">
-        <div>{icon ? icon : null}</div>
-        <div>{children}</div>
-      </div>
+      <section className="flex space-x-2">
+        {icon && icon}
+        {children}
+      </section>
     </NextLink>
   );
 };

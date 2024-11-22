@@ -9,17 +9,17 @@ export enum IconSize {
 }
 
 export enum IconColor {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-  SUCCESS = "success",
-  WARNING = "warning",
-  DANGER = "danger",
-  INFO = "info",
+  PRIMARY = "text-primary",
+  SECONDARY = "text-secondary",
+  SUCCESS = "text-success",
+  WARNING = "text-warning",
+  DANGER = "text-danger",
+  INFO = "text-info",
 }
 
 export type IconProps = {
   name: string;
-  size: IconSize;
+  size?: IconSize;
   color?: IconColor;
 } & HTMLAttributes<HTMLSpanElement>;
 
@@ -27,13 +27,10 @@ const Icon = ({
   name,
   size = IconSize.MD,
   color = IconColor.PRIMARY,
-  ...props
 }: IconProps) => {
+  console.log(color);
   return (
-    <i
-      className={`zcg-icon zcg-${name} icon-${size.toLowerCase()} icon-${color}`}
-      {...props}
-    />
+    <i className={`zcg-icon zcg-${name} icon-${size.toLowerCase()} ${color}`} />
   );
 };
 

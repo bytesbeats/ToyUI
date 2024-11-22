@@ -6,7 +6,6 @@ const config: StorybookConfig = {
     "@chromatic-com/storybook",
     "@storybook/addon-interactions",
     "@storybook/addon-toolbars",
-    "storybook-react-i18next",
   ],
   framework: {
     name: "@storybook/nextjs",

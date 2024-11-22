@@ -2,8 +2,6 @@
 
 .zcg-icon {
   display: inline-block;
-  font-size: 16px;
-  color: inherit;
 
   &.icon-xs {
     font-size: 12px;
@@ -23,29 +21,5 @@
 
   &.icon-xl {
     font-size: 24px;
-  }
-
-  &.icon-primary {
-    color: var(--color-primary);
-  }
-
-  &.icon-secondary {
-    color: var(--color-secondary);
-  }
-
-  &.icon-success {
-    color: var(--color-success);
-  }
-
-  &.icon-warning {
-    color: var(--color-warning);
-  }
-
-  &.icon-danger {
-    color: var(--color-danger);
-  }
-
-  &.icon-info {
-    color: var(--color-info);
   }
 }

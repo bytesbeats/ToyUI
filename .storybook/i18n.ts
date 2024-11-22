@@ -1,18 +1,18 @@
-// src/i18n.js
-
 import i18n from "i18next";
-import Backend from "i18next-http-backend";
-import LanguageDetector from "i18next-browser-languagedetector";
+import { initReactI18next } from "react-i18next";
 
-i18n
-  .use(Backend) // lazy loads translations from /public/locales
-  .use(LanguageDetector) // detect user language
-  .init({
-    fallbackLng: "en",
-    debug: true,
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+i18n.use(initReactI18next).init({
+  fallbackLng: "zh-CN", // 默认语言
+  debug: false, // 调试模式
+  lng: "zh-CN",
+  backend: {
+    loadPath: "/locales/{{lng}}/{{ns}}.json", // 指定资源文件路径
+  },
+  interpolation: {
+    escapeValue: false,
+  },
+  ns: ["common"],
+  defaultNS: "common",
+});
 
 export default i18n;

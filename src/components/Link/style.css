@@ -1,4 +1,17 @@
 .Link {
-  color: var(--color-primary);
-  text-decoration: none;
+  font-family: zpix;
+  &.link-primary {
+    color: oklch(var(--p));
+  }
+  &.link-success {
+    color: oklch(var(--su));
+  }
+
+  &.link-warning {
+    color: oklch(var(--wa));
+  }
+
+  &.link-error {
+    color: oklch(var(--er));
+  }
 }

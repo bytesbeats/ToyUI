@@ -1,0 +1,10 @@
+{
+  "common": {
+    "component": "Component",
+    "before": "before",
+    "after": "after",
+    "Description": "Description",
+    "Normal": "Normal",
+    "Click me": "Click me"
+  }
+}
