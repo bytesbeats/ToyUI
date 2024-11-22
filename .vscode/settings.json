@@ -1,0 +1,6 @@
+{
+  "editor.fontSize": 14,
+  "editor.fontFamily": "'MonaspaceNeonVar-SemiWideRegular', monospace",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}

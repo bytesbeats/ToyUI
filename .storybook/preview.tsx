@@ -3,7 +3,6 @@ import type { Preview } from "@storybook/react";
 import "../src/app/globals.css";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
-import { zpix } from "../src/app/layout";
 
 const preview: Preview = {
   parameters: {
@@ -25,7 +24,7 @@ const preview: Preview = {
         title: "Language",
         icon: "globe",
         items: [
-          { value: "zh-CN", right: "🇨🇳", title: "中文" },
+          { value: "zh", right: "🇨🇳", title: "中文" },
           { value: "en", right: "🇺🇸", title: "English" },
         ],
       },
@@ -47,10 +46,6 @@ export const decorators = [
         i18n.changeLanguage(context.globals.locale);
       }
     }, [locale]);
-
-    useLayoutEffect(() => {
-      document.body.classList.add(zpix.className);
-    }, []);
 
     return (
       <I18nextProvider i18n={i18n}>
