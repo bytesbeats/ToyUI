@@ -6,7 +6,6 @@ import i18n from "./i18n";
 
 const preview: Preview = {
   parameters: {
-    layout: "centered",
     controls: {
       matchers: {
         color: /(background|color)$/i,

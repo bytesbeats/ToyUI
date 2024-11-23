@@ -1,19 +1,37 @@
 import { Meta, StoryObj } from "@storybook/react";
+
 import Container from ".";
 
 const meta: Meta<typeof Container> = {
   component: Container,
+  decorators: [
+    // MARK: 当需要进行自定义Block容器时 在此处定义
+    (Story) => {
+      return (
+        <div className="bg-neutral-content w-screen h-screen inset-x-0 inset-y-0">
+          <Story />
+        </div>
+      );
+    },
+  ],
 };
 
-type PrimaryStory = StoryObj<typeof meta>;
+type ContainerStory = StoryObj<typeof meta>;
 
-export const Primary: PrimaryStory = {
+export const Normal: ContainerStory = {
   args: {
-    children: (
-      <div className="bg-neutral-content text-primary w-1/4 mx-auto m-5 h-full text-center p-5 rounded shadow">
-        Container Content
-      </div>
-    ),
+    className:
+      "bg-neutral text-neutral-content h-96 text-center p-5 rounded shadow",
+    children: "Normal Container Content",
+  },
+};
+
+export const Full: ContainerStory = {
+  args: {
+    className:
+      "bg-neutral text-neutral-content h-96 text-center p-5 rounded shadow",
+    children: "Full Container Content",
+    full: true,
   },
 };
 

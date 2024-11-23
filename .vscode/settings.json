@@ -1,6 +1,13 @@
 {
-  "editor.fontSize": 14,
+  "editor.fontSize": 15,
   "editor.fontFamily": "'MonaspaceNeonVar-SemiWideRegular', monospace",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+  },
+  "cSpell.words": [
+    "oklch"
+  ]
 }

@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  width: 100vw;
+  height: 100%;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+body {
+  background-image: url("/images/bg.png");
+  animation: moveBackground 6s ease-out infinite alternate-reverse;
+  background-size: 100% 200%;
+  background-repeat: repeat-y;
+  background-position: 0 0;
+}

@@ -1,12 +1,12 @@
 /**
  * @name Container
  * @description 容器组件参数
- * @param {string} size - 容器大小 可选值: s, md, lg, xl, 2xl
+ * @param {string} full - 是否充满
  *
  */
 export type ContainerProps = {
-  children: React.ReactNode | React.ReactNode[];
-  size?: "s" | "md" | "lg" | "xl" | "2xl";
+  children: JSX.Element | JSX.Element[] | React.ReactNode | React.ReactNode[];
+  full?: boolean;
   center?: boolean;
   className?: string;
   style?: React.CSSProperties;
@@ -17,14 +17,16 @@ export type ContainerProps = {
  */
 const Container = ({
   children,
-  size = "md",
-  center = false,
+  full = false,
   className,
   style,
 }: ContainerProps) => {
+  console.log(full);
   return (
     <div
-      className={`container ${size} ${center ? "mx-auto" : ""} ${className}`}
+      className={` ${full ? "w-screen" : "container w-full"}  ${
+        className ?? ""
+      }`}
       style={style && { ...style }}
     >
       {children}

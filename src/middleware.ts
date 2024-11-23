@@ -1,6 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import { NextRequest, NextResponse } from "next/server";
+
 import i18n from "../next-i18next.config";
 
 const getLocale = (request: NextRequest) => {
@@ -27,7 +28,7 @@ export function middleware(request: NextRequest) {
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
     const redirectUrl = new URL(
-      `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+      `/${locale}${pathname.startsWith("/") ? "/home" : "/"}${pathname}`,
       request.url
     );
     return NextResponse.redirect(redirectUrl);
@@ -37,5 +38,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)", "/"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|images).*)", "/"],
 };

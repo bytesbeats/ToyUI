@@ -1,7 +1,9 @@
-import React, { ReactNode } from "react";
+"use client";
+import "./style.css";
+
 import NextLink, { LinkProps as BaseProps } from "next/link";
 import { useRouter } from "next/navigation";
-import "./style.css";
+import React, { ReactNode } from "react";
 
 export type LinkProps = BaseProps & {
   children: ReactNode | undefined;
