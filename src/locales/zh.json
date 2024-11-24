@@ -1,4 +1,14 @@
 {
-  "home": "首页",
-  "title": "个人账单生成器"
+  "title": "个人账单生成器",
+  "home": {
+    "title": "首页"
+  },
+  "cookingPlan": {
+    "title": "烹饪计划"
+  },
+  "nav": {
+    "home": "首页",
+    "cookingPlan": "烹饪计划",
+    "status": "状态"
+  }
 }

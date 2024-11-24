@@ -6,7 +6,7 @@ i18n.use(initReactI18next).init({
   debug: false, // 调试模式
   lng: "zh",
   backend: {
-    loadPath: "/locales/{{lng}}/{{ns}}.json", // 指定资源文件路径
+    loadPath: "/src/locales/{{lng}}.json", // 指定资源文件路径
   },
   interpolation: {
     escapeValue: false,

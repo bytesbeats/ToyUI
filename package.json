@@ -14,6 +14,7 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.8",
     "@tailwindcss/typography": "^0.5.15",
+    "daisyui": "^4.12.14",
     "i18next": "^23.16.8",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^2.7.1",
@@ -22,7 +23,6 @@
     "next-i18next": "^15.4.0",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
-    "daisyui": "^4.12.14",
     "react-i18next": "^15.1.1"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "@storybook/test": "^8.4.5",
     "@storybook/theming": "^8.4.5",
     "@types/negotiator": "^0.6.3",
-    "@types/node": "^20",
+    "@types/node": "^20.17.7",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
@@ -53,6 +53,6 @@
     "postcss-load-config": "^6.0.1",
     "storybook": "^8.4.5",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.7.2"
   }
 }

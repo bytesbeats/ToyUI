@@ -1,20 +1,20 @@
 .loader {
   width: fit-content;
-  font-size: 17px;
-  font-family: monospace;
+  font-size: 22px;
   line-height: 1.4;
   font-weight: bold;
-  padding: 30px 2px 50px;
-  background: linear-gradient(#000 0 0) 0 0/100% 100% content-box padding-box
+  padding: 30px 2px 60px;
+  background: url("/images/brick.svg") 0 0/100% 150% content-box padding-box
     no-repeat;
   position: relative;
   overflow: hidden;
-  animation: l10-0 2s 1 cubic-bezier(1, 175, 0.5, 175);
+  animation: l10-0 2s infinite cubic-bezier(1, 175, 0.5, 175);
 }
 .loader::before {
-  content: "Loading";
+  content: "Loading...";
+  color: #f9c62c;
   display: inline-block;
-  animation: l10-2 2s 1;
+  animation: l10-2 2s infinite;
 }
 .loader::after {
   content: "";
@@ -136,7 +136,6 @@
   background-repeat: no-repeat;
   animation: inherit;
   animation-name: l10-1;
-  animation-iteration-count: infinite;
 }
 @keyframes l10-0 {
   0%,
@@ -151,16 +150,18 @@
 @keyframes l10-1 {
   50%,
   100% {
-    top: 109.5%;
+    top: 109.65%;
   }
 }
 @keyframes l10-2 {
   0%,
   30% {
+    opacity: 0;
     transform: translateY(0);
   }
   80%,
   100% {
-    transform: translateY(-260%);
+    opacity: 1;
+    transform: translateY(-120%);
   }
 }

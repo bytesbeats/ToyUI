@@ -1,5 +1,5 @@
 {
-  "editor.fontSize": 15,
+  "editor.fontSize": 14.5,
   "editor.fontFamily": "'MonaspaceNeonVar-SemiWideRegular', monospace",
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
@@ -9,5 +9,6 @@
   },
   "cSpell.words": [
     "oklch"
-  ]
+  ],
+  "editor.tabSize": 2
 }

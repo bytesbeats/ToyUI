@@ -8,7 +8,7 @@ const getLocale = (request: NextRequest) => {
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-  const locales: string[] = i18n.locales as unknown as string[];
+  const locales: string[] = i18n.locales;
 
   const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
     locales
@@ -21,20 +21,23 @@ const getLocale = (request: NextRequest) => {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const locale = getLocale(request);
 
-  const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  const pathnameHasLocale = i18n.locales.some((locale: string) =>
+    pathname.startsWith(`/${locale}/`)
   );
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
-    const redirectUrl = new URL(
-      `/${locale}${pathname.startsWith("/") ? "/home" : "/"}${pathname}`,
-      request.url
-    );
-    return NextResponse.redirect(redirectUrl);
-  }
 
-  return NextResponse.next();
+  if (pathnameHasLocale) return;
+
+  const redirectUrl = new URL(
+    `/${locale}${
+      pathname === "/" || pathname === `/${locale}` ? "/home" : "/"
+    }${pathname}`,
+    request.url
+  );
+  request.nextUrl.pathname = redirectUrl.pathname;
+
+  return NextResponse.redirect(request.nextUrl);
 }
 
 export const config = {

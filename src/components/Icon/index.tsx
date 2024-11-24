@@ -1,5 +1,7 @@
-import { HTMLAttributes } from "react";
 import "./styles.css";
+
+import { HTMLAttributes } from "react";
+
 export enum IconSize {
   XS = "xs",
   SM = "sm",
@@ -15,6 +17,7 @@ export enum IconColor {
   WARNING = "text-warning",
   DANGER = "text-danger",
   INFO = "text-info",
+  DEFAULT = "",
 }
 
 export type IconProps = {
@@ -26,9 +29,8 @@ export type IconProps = {
 const Icon = ({
   name,
   size = IconSize.MD,
-  color = IconColor.PRIMARY,
+  color = IconColor.DEFAULT,
 }: IconProps) => {
-  console.log(color);
   return (
     <i className={`zcg-icon zcg-${name} icon-${size.toLowerCase()} ${color}`} />
   );

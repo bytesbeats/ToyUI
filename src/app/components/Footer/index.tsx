@@ -6,7 +6,7 @@ import Link from "next/link";
 import envelope from "/public/images/envelope.svg";
 
 const Footer = () => (
-  <footer className="footer w-screen p-4 pb-8 fixed inset-x-0 bottom-0 flex items-end">
+  <footer className="footer fixed w-screen p-6  inset-x-0 bottom-0 flex items-end z-[999] max-h-52">
     <aside className="relative flex w-full items-center gap-4">
       <Image
         src={envelope}

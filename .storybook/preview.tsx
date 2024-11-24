@@ -41,7 +41,6 @@ export const decorators = [
     const { locale } = context.globals;
     useEffect(() => {
       if (locale !== i18n.language) {
-        console.log("Current locale:", context.globals.locale);
         i18n.changeLanguage(context.globals.locale);
       }
     }, [locale]);

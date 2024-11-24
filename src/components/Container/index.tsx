@@ -15,20 +15,9 @@ export type ContainerProps = {
 /**
  * @name 容器组件
  */
-const Container = ({
-  children,
-  full = false,
-  className,
-  style,
-}: ContainerProps) => {
-  console.log(full);
+const Container = ({ children, full = false, className }: ContainerProps) => {
   return (
-    <div
-      className={` ${full ? "w-screen" : "container w-full"}  ${
-        className ?? ""
-      }`}
-      style={style && { ...style }}
-    >
+    <div className={` ${full ? "w-screen" : "container w-full"}  ${className}`}>
       {children}
     </div>
   );

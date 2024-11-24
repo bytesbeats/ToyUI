@@ -1,7 +1,5 @@
 import "./style.css";
 
-import { useEffect, useRef } from "react";
-
 /**
  * @name PixelLoadingProps
  * @description PixelLoading 组件的属性
@@ -12,7 +10,6 @@ import { useEffect, useRef } from "react";
 export type PixelLoadingProps = {
   className?: string;
   style?: React.CSSProperties;
-  times?: number;
 };
 
 /**
@@ -21,28 +18,9 @@ export type PixelLoadingProps = {
  * @param {PixelLoadingProps} props - 组件的属性
  * @returns {JSX.Element} 返回一个 JSX 元素
  */
-const PixelLoading = ({ times }: PixelLoadingProps) => {
-  const loaderRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!loaderRef.current || !times) return;
-
-    const element = loaderRef.current;
-    const animations = [
-      element.getAnimations()[0],
-      ...Array.from(element.querySelectorAll("::before, ::after")).map(
-        (el) => (el as Element).getAnimations()[0]
-      ),
-    ];
-
-    animations.forEach((animation) => {
-      if (animation) {
-        animation.effect?.updateTiming({ iterations: times });
-      }
-    });
-  }, [times]);
-
-  return <div ref={loaderRef} className="loader" />;
+const PixelLoading = (props: PixelLoadingProps) => {
+  const { className, style } = props;
+  return <div className={`loader ${className}`} style={style} />;
 };
 
 export default PixelLoading;

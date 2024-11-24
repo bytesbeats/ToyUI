@@ -1,4 +1,14 @@
 {
-  "home": "Home",
-  "title": "Bill Generator App"
+  "title": "Bill Generator App",
+  "home": {
+    "title": "Home"
+  },
+  "cookingPlan": {
+    "title": "Cooking Plan"
+  },
+  "nav": {
+    "home": "Home",
+    "cookingPlan": "Cooking Plan",
+    "status": "Status"
+  }
 }

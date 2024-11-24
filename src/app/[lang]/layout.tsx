@@ -1,22 +1,18 @@
-import "../globals.css";
+import "@app/globals.css";
 
-import Cloud from "@app/components/Cloud";
 import Footer from "@app/components/Footer";
+import Mask from "@app/components/Mask";
+import Nav from "@app/components/Nav";
+import { PageProps } from "@constants/common.constant";
+import { getLocalizations } from "@locales/localization";
 import { type Metadata } from "next";
 import localFont from "next/font/local";
-import { ReactNode } from "react";
-
-import i18n, { Locale } from "../../../next-i18next.config";
-import { getLocalizations } from "../../locales/localization";
+import { use } from "react";
 
 const zpix = localFont({
   src: "../../../public/fonts/zpix.ttf",
   display: "swap",
 });
-
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
 
 /**
  * @name Generate metadata for the page
@@ -24,12 +20,8 @@ export async function generateStaticParams() {
  * @param params - The parameters for the page
  * @returns The metadata for the page
  */
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ lang: Locale }>;
-}) {
-  const { lang } = await params;
+export async function generateMetadata(props: PageProps) {
+  const { lang } = await props.params;
   const currentLocalization = await getLocalizations(lang);
 
   return {
@@ -45,12 +37,10 @@ export async function generateMetadata({
  * @param props - The props for the layout
  * @returns The layout for the app
  */
-export default async function RootLayout(props: {
-  children: ReactNode;
-  params: Promise<{ lang: Locale }>;
-}) {
+export default function RootLayout(props: PageProps) {
   const { children } = props;
-  const { lang } = await props.params;
+  const params = use(props.params);
+  const lang = params.lang;
 
   return (
     <html
@@ -58,9 +48,16 @@ export default async function RootLayout(props: {
       data-theme="corporate"
       lang={lang}
     >
-      <body className="h-full w-full flex flex-col">
-        <Cloud />
-        {children}
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+      </head>
+      <body className="m-0 p-0 w-full h-full overflow-x-hidden overflow-y-scroll">
+        <Mask />
+        <Nav lang={lang} />
+        <main className="relative px-6 pt-28 pb-60 z-10">{children}</main>
         <Footer />
       </body>
     </html>
