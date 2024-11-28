@@ -32,7 +32,9 @@ const Icon = ({
   color = IconColor.DEFAULT,
 }: IconProps) => {
   return (
-    <i className={`zcg-icon zcg-${name} icon-${size.toLowerCase()} ${color}`} />
+    <i
+      className={`zcg-icon zcg-${name} icon-${size.toLowerCase()} ${color} inline-block`}
+    />
   );
 };
 

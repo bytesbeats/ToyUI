@@ -10,5 +10,6 @@
   "cSpell.words": [
     "oklch"
   ],
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "prettier.printWidth": 90
 }

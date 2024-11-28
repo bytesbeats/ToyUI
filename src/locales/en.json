@@ -1,14 +1,15 @@
 {
   "title": "Bill Generator App",
   "home": {
-    "title": "Home"
+    "title": "CutiKit"
   },
   "cookingPlan": {
     "title": "Cooking Plan"
   },
   "nav": {
-    "home": "Home",
-    "cookingPlan": "Cooking Plan",
-    "status": "Status"
+    "home": "CuitKit",
+    "cookingPlan": "Plan",
+    "status": "Status",
+    "switchLanguage": "CN"
   }
 }

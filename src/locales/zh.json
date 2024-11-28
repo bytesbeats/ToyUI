@@ -1,14 +1,15 @@
 {
   "title": "个人账单生成器",
   "home": {
-    "title": "首页"
+    "title": "CuitKit"
   },
   "cookingPlan": {
     "title": "烹饪计划"
   },
   "nav": {
-    "home": "首页",
-    "cookingPlan": "烹饪计划",
-    "status": "状态"
+    "home": "CuitKit",
+    "cookingPlan": "计划",
+    "status": "状态",
+    "switchLanguage": "EN"
   }
 }

@@ -1,8 +1,7 @@
 import { match as matchLocale } from "@formatjs/intl-localematcher";
+import i18n from "@locales/next-i18next.config";
 import Negotiator from "negotiator";
 import { NextRequest, NextResponse } from "next/server";
-
-import i18n from "../next-i18next.config";
 
 const getLocale = (request: NextRequest) => {
   const negotiatorHeaders: Record<string, string> = {};
@@ -10,9 +9,7 @@ const getLocale = (request: NextRequest) => {
 
   const locales: string[] = i18n.locales;
 
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
-    locales
-  );
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(locales);
 
   const locale = matchLocale(languages, locales, i18n.defaultLocale);
 

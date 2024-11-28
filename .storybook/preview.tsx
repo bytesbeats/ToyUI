@@ -16,6 +16,7 @@ const preview: Preview = {
       appDirectory: true,
     },
   },
+
   globalTypes: {
     locale: {
       description: "Language",
@@ -29,10 +30,12 @@ const preview: Preview = {
       },
     },
   },
+
   initialGlobals: {
     locale: "zh-CN",
   },
-  tags: ["autodocs"],
+
+  tags: ["autodocs"]
 };
 
 // 装饰器设置语言

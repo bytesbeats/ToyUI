@@ -6,6 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": ".",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -34,6 +35,12 @@
       ],
       "@constants/*": [
         "./src/constants/*"
+      ],
+      "@stores/*": [
+        "./src/stores/*"
+      ],
+      "@providers/*": [
+        "./src/providers/*"
       ]
     }
   },
@@ -41,6 +48,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.d.ts",
     ".next/types/**/*.ts",
   ],
   "exclude": [

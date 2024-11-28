@@ -1,82 +1,90 @@
 "use client";
 
+import "./style.css";
+
 import { getLocalizations } from "@locales/localization";
+import { Locales, Localization } from "@locales/next-i18next.config";
+import { useLanguage } from "@stores/hooks";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Nav({ lang }: { lang: string }) {
-  const [visible, setVisible] = useState<boolean>(true);
-  const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
-  const [currentLocalizations, setCurrentLocalizations] =
-    useState<Record<string, Record<string, string> | undefined>>();
+export default function Nav() {
+  const [language, updateLanguage] = useLanguage();
+  const [currentLocalizations, setCurrentLocalizations] = useState<Localization>();
 
-  const handleScroll = useCallback(() => {
-    const currentScrollPos = document.documentElement.scrollTop;
-    setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
-    setPrevScrollPos(currentScrollPos);
-  }, [prevScrollPos]);
+  const switchLanguage = async () => {
+    updateLanguage(language === Locales.EN ? Locales.ZH : Locales.EN);
+  };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
-  }, [handleScroll]);
+    getLocalizations(language).then((localizations) => {
+      setCurrentLocalizations(localizations);
+    });
+  }, []);
 
-  useEffect(() => {
-    if (lang)
-      getLocalizations(lang).then((localizations) => {
-        setCurrentLocalizations(localizations);
-      });
-  }, [lang]);
   return (
-    <nav
-      className={`fixed transition-transform duration-300 glass z-50 w-full ${
-        visible ? "translate-y-0" : "-translate-y-full"
-      }`}
+    <motion.nav
+      layout
+      className={`navbar fixed top-0 z-50 w-screen justify-around items-start`}
     >
-      <ul className="menu menu-horizontal md:menu-vertical md:gap-5 flex justify-center items-center">
+      {/* Home */}
+      <motion.div className="flex-1 px-1 pt-1">
+        <Link href={`/`} className="flex flex-col justify-center items-center font-bold">
+          <Image
+            src="/images/home.svg"
+            alt="Home"
+            quality={100}
+            width={64}
+            height={64}
+            className="w-[36px] h-auto"
+          />
+          {currentLocalizations?.nav?.home}
+        </Link>
+      </motion.div>
+      {/* Link */}
+      <ul className="menu menu-horizontal text-sm p-0 m-0">
         <li>
-          <Link href={`/`}>
-            <Image
-              src="/images/home.svg"
-              alt="Home"
-              quality={100}
-              width={24}
-              height={24}
-              className="w-[18px] h-[18px] md:w-[32px] md:h-[32px]"
-            />
-            {currentLocalizations?.nav?.home}
-          </Link>
-        </li>
-        <li>
-          <Link href={`/cooking-plan`}>
+          <Link href={`/cooking-plan`} className="flex flex-col items-center">
             <Image
               src="/images/calendar.svg"
               alt="Cooking Plan"
               quality={100}
-              width={24}
-              height={24}
-              className="w-[18px] h-[18px] md:w-[32px] md:h-[32px]"
+              width={32}
+              height={32}
+              className="w-[16px] h-[16px] md:w-[32px] md:h-[32px]"
             />
             {currentLocalizations?.nav?.cookingPlan}
           </Link>
         </li>
         <li>
-          <Link href={`/status`}>
+          <Link href={`/status`} className="flex flex-col items-center">
             <Image
               src="/images/check_ok.svg"
               alt="Status"
-              width={24}
-              height={24}
+              width={32}
+              height={32}
               quality={100}
-              className="w-[18px] h-[18px] md:w-[32px] md:h-[32px]"
+              className="w-[16px] h-[16px] md:w-[32px] md:h-[32px]"
             />
             {currentLocalizations?.nav?.status}
           </Link>
         </li>
+        <li>
+          <Link href="#" onClick={switchLanguage} className="flex flex-col items-center">
+            <Image
+              src="/images/bee.svg"
+              alt="bee"
+              width={32}
+              height={32}
+              quality={100}
+              className="w-[16px] h-[16px] md:w-[32px] md:h-[32px]"
+            />
+            {currentLocalizations?.nav?.switchLanguage}
+          </Link>
+        </li>
       </ul>
-    </nav>
+    </motion.nav>
   );
 }
