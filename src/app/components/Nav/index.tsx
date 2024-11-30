@@ -2,27 +2,19 @@
 
 import "./style.css";
 
-import { getLocalizations } from "@locales/localization";
-import { Locales, Localization } from "@locales/next-i18next.config";
+import { Locales } from "@locales/next-i18next.config";
 import { useLanguage } from "@stores/hooks";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-export default function Nav() {
-  const [language, updateLanguage] = useLanguage();
-  const [currentLocalizations, setCurrentLocalizations] = useState<Localization>();
-
+const Nav = () => {
+  const [language, currentLocalizations, upgradeLanguage] = useLanguage();
   const switchLanguage = async () => {
-    updateLanguage(language === Locales.EN ? Locales.ZH : Locales.EN);
-  };
-
-  useEffect(() => {
-    getLocalizations(language).then((localizations) => {
-      setCurrentLocalizations(localizations);
+    upgradeLanguage({
+      language: language === Locales.EN ? Locales.ZH : Locales.EN,
     });
-  }, []);
+  };
 
   return (
     <motion.nav
@@ -87,4 +79,6 @@ export default function Nav() {
       </ul>
     </motion.nav>
   );
-}
+};
+
+export default Nav;

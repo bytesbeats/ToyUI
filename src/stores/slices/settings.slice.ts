@@ -1,15 +1,10 @@
-import { Locales } from "@locales/next-i18next.config";
+import { Locales, Localization } from "@locales/next-i18next.config";
 import { AppStore } from "@stores/app.store";
 import { StateCreator } from "zustand";
 
-export enum Theme {
-  Light = "light",
-  Dark = "dark",
-}
-
 export interface Settings {
-  theme: Theme;
   language: Locales;
+  localizations: Localization;
 }
 
 export interface SettingsSlice {
@@ -17,22 +12,23 @@ export interface SettingsSlice {
   upgradeSettings: (newSettings: Partial<Settings>) => void;
 }
 
+export const initializedSettings: Settings = {
+  language: Locales.EN,
+  localizations: {},
+};
+
 export const createSettingsSlice: StateCreator<
   AppStore,
-  [["zustand/devtools", never]],
   [["zustand/persist", unknown]],
+  [],
   SettingsSlice
 > = (set) => ({
-  settings: {
-    theme: Theme.Light,
-    language: Locales.EN,
-  },
+  settings: initializedSettings,
   upgradeSettings: (newSettings: Partial<Settings>) =>
     set(
       (state) => ({
         settings: { ...state.settings, ...newSettings },
       }),
-      false,
-      "upgradeSettings"
+      false
     ),
 });

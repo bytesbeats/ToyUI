@@ -1,93 +1,93 @@
-import { Locales } from "@locales/next-i18next.config";
+import { getLocalizations } from "@locales/localization";
 import { create } from "zustand";
-import { createJSONStorage, devtools, persist } from "zustand/middleware";
+import { createJSONStorage, persist, subscribeWithSelector } from "zustand/middleware";
 
 import {
   createSettingsSlice,
-  Settings,
+  initializedSettings,
   SettingsSlice,
-  Theme,
 } from "./slices/settings.slice";
-import { createUISlice, UISlice } from "./slices/ui.slice";
-import { createUserSlice, UserSlice } from "./slices/user.slice";
+import { createUISlice, initializedUISlice, UISlice } from "./slices/ui.slice";
+import { createUserSlice, initializedUser, UserSlice } from "./slices/user.slice";
 
 // ------------------------STATE------------------------------------
 type RootState = {
-  isInitialized: boolean;
+  isInitialized?: boolean | undefined;
 };
 
 // ------------------------ACTIONS------------------------------------
 export type RootActions = {
   logout: () => void;
   reset: () => void;
-  initialization: (initialSettings: AppStoreInitialize) => void;
+  initialization: (appInitialState: AppStoreInitialize) => void;
 };
 
 // 全局状态类型
 export type AppStore = UserSlice & SettingsSlice & UISlice & RootState & RootActions;
 
-export type AppStoreInitialize = Pick<
-  AppStore,
-  "user" | "settings" | "ui" | "isInitialized"
->;
+export type AppStoreInitialize = Pick<AppStore, "user" | "settings" | "ui">;
 
 // 初始化状态
-const initialState: AppStoreInitialize = {
-  user: { isLogged: false },
-  settings: { theme: Theme.Light, language: Locales.EN },
-  ui: { isLoading: false, AppError: null },
-  isInitialized: false,
+export const appInitialState: AppStoreInitialize = {
+  ui: initializedUISlice,
+  user: initializedUser,
+  settings: initializedSettings,
 };
-
 // store
 export const useAppStore = create<AppStore>()(
-  devtools(
+  subscribeWithSelector(
     persist(
-      (set, get, action) => {
+      (set, get, store) => {
         return {
-          ...initialState,
+          ...appInitialState,
           // UI Slice
-          ...createUISlice(set, get, action),
+          ...createUISlice(set, get, store),
           // Settings Slice
-          ...createSettingsSlice(set, get, action),
+          ...createSettingsSlice(set, get, store),
           // User Slice
-          ...createUserSlice(set, get, action),
+          ...createUserSlice(set, get, store),
           // Root Slice
-          reset: () => set(initialState, false, "reset"),
-          initialization: (initialSettings: Partial<Settings>) =>
+          reset: () => set(() => ({ ...appInitialState, isInitialized: false }), false),
+          initialization: (appInitState: AppStoreInitialize) =>
             set(
               (state) => ({
                 ...state,
-                settings: { ...state.settings, ...initialSettings },
+                ...appInitState,
                 isInitialized: true,
               }),
-              false,
-              "initialization"
+              false
             ),
           logout: () =>
             set(
               () => ({
                 user: { isLogged: false },
               }),
-              false,
-              "logout"
+              false
             ),
         };
       },
       {
         name: "cuit-kit-app-storage",
         storage: createJSONStorage(() => sessionStorage),
-        partialize: (state): Partial<AppStore> => ({
-          settings: state.settings,
-          user: state.user,
-          ui: state.ui,
-          isInitialized: state.isInitialized || false,
+        partialize: (stage): Partial<AppStore> => ({
+          settings: stage.settings,
+          user: stage.user,
+          ui: stage.ui,
+          isInitialized: stage.isInitialized,
         }),
       }
-    ),
-    {
-      name: "AppStore",
-      enabled: process.env.NODE_ENV === "development",
-    }
+    )
   )
+);
+
+useAppStore.subscribe(
+  (state) => state.settings,
+  async ({ language }, { language: prevLanguage }) => {
+    if (language !== prevLanguage) {
+      const localization = await getLocalizations(language);
+      useAppStore.getState().upgradeSettings({
+        localizations: localization,
+      });
+    }
+  }
 );

@@ -1,9 +1,18 @@
-import { Locales } from "@locales/next-i18next.config";
+"use client";
+import { Locales, Localization } from "@locales/next-i18next.config";
 import { useShallow } from "zustand/shallow";
 
-import { useAppStore } from "./app.store";
+import { AppStoreInitialize, useAppStore } from "./app.store";
 
-type useLanguageParams = [Locales, (language: Locales) => void];
+type useLanguageParams = [
+  Locales,
+  Localization,
+  ({ language }: { language: Locales }) => void
+];
+type useInitializedPrams = [
+  boolean | undefined,
+  (appInitialState: AppStoreInitialize) => void
+];
 
 // User
 export const useUser = () => useAppStore((state) => state.user);
@@ -16,15 +25,25 @@ export const useLoading = () => useAppStore((state) => state.ui.isLoading);
 
 // Upgrade Language
 export const useUpdateLanguage = (language: Locales) =>
-  useAppStore(useShallow((state) => state.upgradeSettings({ language })));
+  useAppStore((state) => state.upgradeSettings({ language }));
 
 // Theme
-export const useTheme = () => useAppStore((state) => state.settings.theme);
+export const useTheme = () => useAppStore((state) => state.ui.theme);
+
+// Localizations
+export const useLocalizations = () =>
+  useAppStore(useShallow((state) => state.settings.localizations));
 
 // Language set & get
 export const useLanguage = (): useLanguageParams =>
-  useAppStore(useShallow((state) => [state.settings.language, useUpdateLanguage]));
+  useAppStore(
+    useShallow((state) => [
+      state.settings.language,
+      state.settings.localizations,
+      state.upgradeSettings,
+    ])
+  );
 
 // Initialized
-export const useInitialized = () =>
+export const useInitialized = (): useInitializedPrams =>
   useAppStore(useShallow((state) => [state.isInitialized, state.initialization]));

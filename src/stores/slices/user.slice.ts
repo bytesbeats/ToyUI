@@ -18,15 +18,18 @@ export interface UserSlice {
   isLoggedIn: () => boolean;
 }
 
+export const initializedUser: UserState = {
+  isLogged: false,
+};
+
 export const createUserSlice: StateCreator<
   AppStore,
-  [["zustand/devtools", never]],
   [["zustand/persist", unknown]],
+  [],
   UserSlice
 > = (set, get) => ({
-  isLogged: false,
-  user: undefined,
+  user: initializedUser,
   setUser: (user: UserState) =>
-    set((state) => ({ ...state, user: { ...state.user, ...user } }), false, "setUser"),
+    set((state) => ({ ...state, user: { ...state.user, ...user } }), false),
   isLoggedIn: () => get().user?.isLogged || false,
 });
