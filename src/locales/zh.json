@@ -6,6 +6,9 @@
   "cookingPlan": {
     "title": "烹饪计划"
   },
+  "status": {
+    "title": "状态"
+  },
   "nav": {
     "home": "CuitKit",
     "cookingPlan": "计划",

@@ -6,6 +6,9 @@
   "cookingPlan": {
     "title": "Cooking Plan"
   },
+  "status": {
+    "title": "Status"
+  },
   "nav": {
     "home": "CuitKit",
     "cookingPlan": "Plan",

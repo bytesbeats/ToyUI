@@ -7,25 +7,3 @@ body {
   width: 100vw;
   height: 100vh;
 }
-@keyframes moveBackground {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 100%;
-  }
-}
-
-.bg-mask {
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  z-index: -10;
-  overflow: hidden;
-  background-image: url("/images/bg.png");
-  background-size: cover;
-  background-repeat: repeat-y;
-  animation: moveBackground 6s ease-in-out infinite alternate-reverse;
-}

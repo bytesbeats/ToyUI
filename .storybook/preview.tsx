@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useLayoutEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import type { Preview } from "@storybook/react";
 import "../src/app/globals.css";
 import { I18nextProvider } from "react-i18next";
@@ -35,7 +35,7 @@ const preview: Preview = {
     locale: "zh-CN",
   },
 
-  tags: ["autodocs"]
+  tags: ["autodocs"],
 };
 
 // 装饰器设置语言
