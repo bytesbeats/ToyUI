@@ -24,12 +24,13 @@ export default function StoreInitializer({
         localizations: localization,
       },
     };
-    if (isTruthy(isInitialized)) {
+    if (!isTruthy(isInitialized)) {
       upgradeInitialization(initialState);
     }
   }, [isInitialized, lang, localization, upgradeInitialization]);
 
   useEffect(() => {
+    console.log("bootstrap", isInitialized);
     if (!isNullish(isInitialized)) {
       bootstrap();
     }

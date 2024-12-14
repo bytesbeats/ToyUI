@@ -13,6 +13,8 @@
     "home": "CuitKit",
     "cookingPlan": "计划",
     "status": "状态",
-    "switchLanguage": "EN"
+    "locale": "EN",
+    "light": "亮",
+    "dark": "暗"
   }
 }

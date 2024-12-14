@@ -7,64 +7,71 @@ import { useLanguage } from "@stores/hooks";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { debounce } from "remeda";
-import { Subject } from "rxjs";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { fromEvent, map, Subject, tap, throttleTime } from "rxjs";
 
 const Nav = () => {
+  const darkRef = useRef<HTMLInputElement>(null);
   // current state
+  const [dark, setDark] = useState<boolean>(false);
   const bodyRef = useRef<HTMLElement | null>(null);
-  const destroy$ = useRef(new Subject<void>());
   const [showMenu, setShowMenu] = useState(false);
   const { scrollY } = useScroll({
     container: bodyRef,
+    layoutEffect: false,
   });
-
   // store state
   const [language, currentLocalizations, upgradeLanguage] = useLanguage();
 
-  // handle
+  //  subject
+  const posY$ = useMemo(() => new Subject<number>(), []);
+  const observableLanguageChange$ = useMemo(() => new Subject<Locales>(), []);
 
-  /**
-   * @name switchLanguage
-   * @description Switch Global language
-   */
-  const switchLanguage = async () => {
-    upgradeLanguage({
-      language: language === Locales.EN ? Locales.ZH : Locales.EN,
-    });
-  };
+  useLayoutEffect(() => {
+    if (document && document?.body && darkRef.current) {
+      bodyRef.current = document.body;
+      // theme event
+      const observableThemeChange$ = fromEvent(darkRef.current, "change").subscribe(
+        (event) => {
+          const isChecked = (event.target as HTMLInputElement).checked;
+          setDark(isChecked);
+        }
+      );
 
-  /**
-   * @name handleScrollDebounce
-   * @description Debounce the scroll event to prevent unnecessary re-renders
-   */
-  const handleScrollDebounce = debounce(
-    (y: number) => {
-      if (y >= 75) {
-        setShowMenu(true);
-      } else {
-        setShowMenu(false);
-      }
-    },
-    {
-      waitMs: 30,
-    }
-  ).call;
+      // scroll event
+      posY$
+        .pipe(
+          throttleTime(300),
+          map((y) => y >= 120),
+          tap((show) => setShowMenu(show))
+        )
+        .subscribe();
 
-  useEffect(() => {
-    bodyRef.current = document.body;
-
-    if (bodyRef.current) {
       return () => {
-        destroy$.current.next();
-        destroy$.current.complete();
+        console.log("unsubscribe"); // why unsubscribe run many times?
         bodyRef.current = null;
+        posY$.complete();
+        observableThemeChange$.unsubscribe();
       };
     }
-  }, [bodyRef]);
+  }, [bodyRef, posY$]);
 
-  useMotionValueEvent(scrollY, "change", handleScrollDebounce);
+  useEffect(() => {
+    observableLanguageChange$
+      .pipe(
+        map((lang) => (lang === Locales.EN ? Locales.ZH : Locales.EN)),
+        tap((lang) => upgradeLanguage({ language: lang }))
+      )
+      .subscribe();
+
+    return () => {
+      observableLanguageChange$.unsubscribe();
+    };
+  }, [observableLanguageChange$, upgradeLanguage]);
+
+  useMotionValueEvent(scrollY, "change", (wheelY) => {
+    posY$.next(wheelY);
+  });
 
   return (
     <motion.nav
@@ -120,7 +127,40 @@ const Nav = () => {
           </Link>
         </li>
         <li>
-          <Link href="#" onClick={switchLanguage} className="flex flex-col items-center">
+          <div className="flex flex-col items-center">
+            <label className="swap swap-rotate">
+              <input
+                type="checkbox"
+                className="theme-controller"
+                value="night"
+                defaultChecked={dark}
+                ref={darkRef}
+              />
+              <Image
+                src="/images/light-on.svg"
+                alt="bee"
+                width={32}
+                height={32}
+                quality={100}
+                className="w-[16px] h-[16px] md:w-[32px] md:h-[32px] swap-off fill-current"
+              />
+              <Image
+                src="/images/light-off.svg"
+                alt="bee"
+                width={32}
+                height={32}
+                quality={100}
+                className="w-[16px] h-[16px] md:w-[32px] md:h-[32px] swap-on fill-current"
+              />
+            </label>
+            {dark ? currentLocalizations?.nav?.dark : currentLocalizations?.nav?.light}
+          </div>
+        </li>
+        <li>
+          <div
+            onClick={() => observableLanguageChange$.next(language)}
+            className="swap swap-rotate flex flex-col items-center"
+          >
             <Image
               src="/images/bee.svg"
               alt="bee"
@@ -129,8 +169,8 @@ const Nav = () => {
               quality={100}
               className="w-[16px] h-[16px] md:w-[32px] md:h-[32px]"
             />
-            {currentLocalizations?.nav?.switchLanguage}
-          </Link>
+            {currentLocalizations?.nav?.locale}
+          </div>
         </li>
       </ul>
     </motion.nav>

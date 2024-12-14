@@ -58,7 +58,7 @@ export default async function RootLayout(props: PageProps) {
   return (
     <html
       className={`${zpix.className} antialiased overflow-x-hidden`}
-      data-theme="light"
+      data-theme="retro"
       lang={lang}
     >
       <body className="m-0 p-0 w-full h-full overflow-x-hidden overflow-y-scroll">

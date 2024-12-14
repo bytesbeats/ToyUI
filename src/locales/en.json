@@ -13,6 +13,8 @@
     "home": "CuitKit",
     "cookingPlan": "Plan",
     "status": "Status",
-    "switchLanguage": "CN"
+    "locale": "CN",
+    "light": "Light",
+    "dark": "Dark"
   }
 }
