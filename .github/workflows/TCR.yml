@@ -5,6 +5,7 @@ author: guotingchaopr@gmail.com
 on:
   release:
     types: [created, edited, published]
+  workflow_dispatch:
 env:
   TCR_URL: ccr.ccs.tencentyun.com
 
