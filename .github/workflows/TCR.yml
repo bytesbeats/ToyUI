@@ -22,9 +22,9 @@ jobs:
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: ${{env.TCR_URL}}/${{env.NAME_SPACE}}/${{ github.repository }}:${{ github.sha }}
+          image: ${{env.TCR_URL}}/${{env.NAME_SPACE}}/${{ github.event.repository.name }}:${{ github.sha }}
           tags: ${{ github.sha }}
-          containerfiles: ./.Dockerfile
+          containerfiles: ${{ github.workspace }}/.Dockerfile
 
       - name: Push To Tencent Cloud Registry
         id: push-to-tcr
