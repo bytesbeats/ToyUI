@@ -1,9 +1,6 @@
 name: 📦 Packing
 description: Push image to TCR
 author: guotingchaopr@gmail.com
-branding:
-  icon: "package"
-  color: "green"
 
 on:
   release:
