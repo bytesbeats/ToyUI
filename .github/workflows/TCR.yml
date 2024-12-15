@@ -23,7 +23,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           containerfiles: ./Dockerfile
-          image: $TCR_URL/$bite-dance/${{ github.repository }}/latest
+          image: ${{env.TCR_URL}}/${{env.bite-dance}}/${{ github.repository }}/latest
           tags: latest ${{ github.sha }} ${{ github.event.release.tag_name }}
 
       - name: Push To Tencent Cloud Registry
