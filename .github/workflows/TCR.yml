@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 env:
   TCR_URL: ccr.ccs.tencentyun.com
+  NAME_SPACE: bite-dance
 
 jobs:
   setup-build-publish-deploy:
@@ -21,7 +22,8 @@ jobs:
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: my-app
+          containerfiles: ./Dockerfile
+          image: $TCR_URL/$bite-dance/${{ github.repository }}/latest
           tags: latest ${{ github.sha }} ${{ github.event.release.tag_name }}
 
       - name: Push To Tencent Cloud Registry
