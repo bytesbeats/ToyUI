@@ -1,6 +1,5 @@
 name: 📦 Packing
 description: Push image to TCR
-author: guotingchaopr@gmail.com
 
 on:
   release:
