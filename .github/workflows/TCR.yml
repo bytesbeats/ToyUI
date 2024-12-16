@@ -21,7 +21,7 @@ jobs:
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: ${{env.TCR_URL}}/${{env.NAME_SPACE}}/${{ github.event.repository.name }}
+          image: ${{env.NAME_SPACE}}/${{ github.event.repository.name }}
           tags: ${{ github.sha }}
           containerfiles: ./Dockerfile
 
