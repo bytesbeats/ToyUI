@@ -22,7 +22,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           image: ${{env.NAME_SPACE}}/${{ github.event.repository.name }}
-          tags: ${{ github.sha }}
+          tags: latest
           containerfiles: ./Dockerfile
 
       - name: Push To Tencent Cloud Registry
