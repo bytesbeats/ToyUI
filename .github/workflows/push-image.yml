@@ -6,31 +6,29 @@ on:
       - closed
     branches:
       - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 env:
   TCR_URL: ccr.ccs.tencentyun.com
   NAME_SPACE: bite-dance
 
 jobs:
-  is_merged:
-    name: Check if PR is merged
+  check-environment:
+    name: Check Environment
     runs-on: ubuntu-latest
-    outputs:
-      is_merged: ${{ github.event.pull_request.merged }}
     steps:
-      - name: Determine if PR was merged
+      - name: Check Event
         run: |
-          if [[ "${{ github.event.pull_request.merged }}" != "true" ]]; then
-            echo "PR was not merged. Exiting."
-            exit 1
-          fi
-        shell: bash
+          echo "Triggered by: ${{ github.event_name }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Repository: ${{ github.repository }}"
   setup-build-publish-deploy:
+    needs: check-environment
     name: Setup, Build, Publish, and Deploy
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     environment: production
-    needs:
-      - is_merged
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -55,3 +53,10 @@ jobs:
 
       - name: Print image url
         run: echo "Image pushed to ${{ steps.push-to-tcr.outputs.registry-paths }}"
+
+      - name: Trigger Dokploy Deployment
+        uses: benbristow/dokploy-deploy-action@0.0.1
+        with:
+          auth_token: ${{ secrets.DOKPLOY_AUTH_TOKEN }}
+          application_id: ${{ secrets.DOKPLOY_APPLICATION_ID }}
+          dokploy_url: ${{ secrets.DOKPLOY_HOST }}
