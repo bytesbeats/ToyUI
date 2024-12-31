@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![📦 Packing](https://github.com/guotingchao/CuteToyTools/actions/workflows/TCR.yml/badge.svg)](https://github.com/guotingchao/CuteToyTools/actions/workflows/TCR.yml)
+[![📦 Packing](https://github.com/bytesbeats/CuteToy/actions/workflows/push-image.yml/badge.svg)](https://github.com/bytesbeats/CuteToy/actions/workflows/push-image.yml)
 
 </div>
 
