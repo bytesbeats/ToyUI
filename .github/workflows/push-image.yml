@@ -1,14 +1,6 @@
 name: 📦 Packing
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - main
-  push:
-    branches:
-      - main
   workflow_dispatch:
 env:
   TCR_URL: ccr.ccs.tencentyun.com
