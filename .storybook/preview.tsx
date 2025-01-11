@@ -34,8 +34,7 @@ const preview: Preview = {
   initialGlobals: {
     locale: "zh-CN",
   },
-
-  tags: ["autodocs"],
+  tags: [],
 };
 
 // 装饰器设置语言

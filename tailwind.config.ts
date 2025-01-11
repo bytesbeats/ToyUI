@@ -49,9 +49,12 @@ export default {
       },
       animation: {
         "float-around": "float-around 6s ease-in-out infinite",
-        "float-around-mini-1": "float-around 6s 1s ease-in-out reverse infinite",
-        "float-around-mini-2": "float-around 6s 1.7s ease-in-out reverse infinite",
-        "float-around-mini-3": "float-around 6s 2.05s ease-in-out reverse infinite",
+        "float-around-mini-1":
+          "float-around 6s 1s ease-in-out reverse infinite",
+        "float-around-mini-2":
+          "float-around 6s 1.7s ease-in-out reverse infinite",
+        "float-around-mini-3":
+          "float-around 6s 2.05s ease-in-out reverse infinite",
       },
     },
   },

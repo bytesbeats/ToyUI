@@ -22,5 +22,7 @@ export const StoreContext = createContext<StoreContextType>(null);
 // Provider
 export const StoreProviders = ({ children }: StoreProvidersProps) => {
   const [store] = useState<StoreContextType>(useAppStore());
-  return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>;
+  return (
+    <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
+  );
 };
