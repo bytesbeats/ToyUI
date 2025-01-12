@@ -7,9 +7,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
   },
-  "cSpell.words": [
-    "oklch"
-  ],
   "editor.tabSize": 2,
-  "prettier.printWidth": 90
+  "editor.defaultFormatter": "biomejs.biome",
+  "prettier.printWidth": 80,
 }

@@ -29,6 +29,6 @@ export const createSettingsSlice: StateCreator<
       (state) => ({
         settings: { ...state.settings, ...newSettings },
       }),
-      false
+      false,
     ),
 });

@@ -39,7 +39,7 @@ export const createUISlice: StateCreator<
         ...state,
         ui: { ...state.ui, theme },
       }),
-      false
+      false,
     ),
   setLoading: (isLoading) =>
     set(
@@ -47,7 +47,7 @@ export const createUISlice: StateCreator<
         ...state,
         ui: { ...state.ui, isLoading },
       }),
-      false
+      false,
     ),
   setError: (error) =>
     set(
@@ -55,6 +55,6 @@ export const createUISlice: StateCreator<
         ...state,
         ui: { ...state.ui, AppError: error },
       }),
-      false
+      false,
     ),
 });

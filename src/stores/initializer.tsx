@@ -4,7 +4,7 @@ import { Locales, Localization } from "@locales/next-i18next.config";
 import { useCallback, useEffect } from "react";
 import { isNullish, isTruthy } from "remeda";
 
-import { appInitialState, AppStoreInitialize } from "./app.store";
+import { AppStoreInitialize, appInitialState } from "./app.store";
 import { useInitialized } from "./hooks";
 
 export default function StoreInitializer({

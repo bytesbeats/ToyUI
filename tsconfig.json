@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "allowJs": true,
     "skipLibCheck": true,
@@ -24,24 +20,12 @@
       }
     ],
     "paths": {
-      "@app/*": [
-        "./src/app/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@locales/*": [
-        "./src/locales/*"
-      ],
-      "@constants/*": [
-        "./src/constants/*"
-      ],
-      "@stores/*": [
-        "./src/stores/*"
-      ],
-      "@providers/*": [
-        "./src/providers/*"
-      ]
+      "@app/*": ["./src/app/*"],
+      "@components/*": ["./src/components/*"],
+      "@locales/*": ["./src/locales/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@stores/*": ["./src/stores/*"],
+      "@providers/*": ["./src/providers/*"]
     }
   },
   "include": [
@@ -50,8 +34,7 @@
     "**/*.tsx",
     "**/*.d.ts",
     ".next/types/**/*.ts",
+    "src/components/Container/Container.stories.tsx.bak"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

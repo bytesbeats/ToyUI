@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from "@storybook/react";
 
-import Icon, { IconColor, IconSize } from '.';
+import Icon, { IconColor, IconSize } from ".";
 
 const meta: Meta<typeof Icon> = {
   component: Icon,
@@ -9,9 +9,18 @@ const meta: Meta<typeof Icon> = {
 type IconStory = StoryObj<typeof meta>;
 
 export const Primary: IconStory = {
-  parameters: {},
+  globals: {},
+  parameters: {
+    layout: "centered",
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 100,
+      },
+    },
+  },
   args: {
-    name: 'x_guanzhu',
+    name: "x_guanzhu",
     color: IconColor.PRIMARY,
     size: IconSize.MD,
   },
