@@ -1,4 +1,5 @@
-import { Canvas,Meta, Controls, Story } from '@storybook/blocks';
+import { Canvas, Primary, Story } from '@storybook/addon-docs';
+import { Controls, Meta } from '@storybook/blocks';
 import * as ContainerStories from './Container.stories';
 
 <Meta title="Container" of={ContainerStories} />
@@ -6,8 +7,6 @@ import * as ContainerStories from './Container.stories';
 # Getting Started
 
 The `Container` component is a simple wrapper component that can be used to wrap other components. It is useful for centering content on the page.
-
-## Usage
 
 ```jsx
 import { Container } from '@cuteToy/blocks';
@@ -20,4 +19,12 @@ const App = () => (
 ```
 
 
-<Controls />
+
+## General Usage
+
+<Canvas of={ContainerStories.Default} />
+
+
+## Full Width
+
+<Canvas of={ContainerStories.Full} />

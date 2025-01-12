@@ -1,8 +1,8 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Story } from '@storybook/blocks';
 import * as MobileSimulatorContainerStories from './MobileSimulatorContainer.stories';
 
 
-<Meta title="MobileSimulatorContainer" of={MobileSimulatorContainerStories} />
+<Meta title="MDX/MobileSimulatorContainer" of={MobileSimulatorContainerStories} />
 
 
 
@@ -20,3 +20,8 @@ const App = () => (
   </MobileSimulatorContainer>
 );
 ```
+
+
+## General Use
+
+<Story of={MobileSimulatorContainerStories.Light} />

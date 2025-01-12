@@ -21,7 +21,9 @@
       "public",
       "cypress",
       "jest",
-      "package.json"
+      "package.json",
+      ".storybook",
+      "storybook-static"
     ]
   },
   "formatter": { "useEditorconfig": true },
@@ -32,7 +34,9 @@
       "recommended": false,
       "complexity": {
         "noUselessThisAlias": "error",
-        "noUselessTypeConstraint": "error"
+        "noUselessTypeConstraint": "error",
+        "noUselessCatch": "error",
+        "noUselessEmptyExport": "error"
       },
       "correctness": {
         "noUnusedImports": "error",

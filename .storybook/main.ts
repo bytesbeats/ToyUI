@@ -1,9 +1,8 @@
-import * as path from "path";
 import type { StorybookConfig } from "@storybook/nextjs";
+import * as path from "path";
 const config: StorybookConfig = {
   addons: [
     "@storybook/addon-essentials",
-    "@storybook/addon-docs",
     "@chromatic-com/storybook",
     "@storybook/addon-interactions",
   ],
