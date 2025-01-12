@@ -96,9 +96,13 @@ const MobileSimulatorContainer = (props: MobileSimulatorContainerProps) => {
     let timeColor = "";
 
     if (dark) {
-      timeColor = getComputedStyle(root).getPropertyValue("--dark--time-color").trim();
+      timeColor = getComputedStyle(root)
+        .getPropertyValue("--dark--time-color")
+        .trim();
     } else {
-      timeColor = getComputedStyle(root).getPropertyValue("--light--time-color").trim();
+      timeColor = getComputedStyle(root)
+        .getPropertyValue("--light--time-color")
+        .trim();
     }
     root.style.setProperty("--time-color", timeColor);
   }, [time, dark]);
@@ -109,9 +113,13 @@ const MobileSimulatorContainer = (props: MobileSimulatorContainerProps) => {
     let barColor = "";
 
     if (dark) {
-      barColor = getComputedStyle(root).getPropertyValue("--dark--bar-color").trim();
+      barColor = getComputedStyle(root)
+        .getPropertyValue("--dark--bar-color")
+        .trim();
     } else {
-      barColor = getComputedStyle(root).getPropertyValue("--light--bar-color").trim();
+      barColor = getComputedStyle(root)
+        .getPropertyValue("--light--bar-color")
+        .trim();
     }
     root.style.setProperty("--bar-color", barColor);
   }, [dark]);

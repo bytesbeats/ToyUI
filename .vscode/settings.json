@@ -1,13 +1,17 @@
 {
-  "editor.fontSize": 14.5,
+  "editor.fontSize": 15,
   "editor.fontFamily": "'MonaspaceNeonVar-SemiWideRegular', monospace",
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
+    "source.organizeImports": "always",
+    "source.organizeImports.biome": "explicit"
   },
   "editor.tabSize": 2,
   "editor.defaultFormatter": "biomejs.biome",
-  "prettier.printWidth": 80,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
 }

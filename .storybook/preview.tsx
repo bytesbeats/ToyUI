@@ -1,9 +1,8 @@
-import React, { Suspense, useEffect } from "react";
 import type { Preview } from "@storybook/react";
-import "../src/app/globals.css";
+import { Suspense, useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
+import "../src/app/globals.css";
 import i18n from "./i18n";
-import { ThemeProvider } from "@storybook/theming";
 
 const preview: Preview = {
   parameters: {

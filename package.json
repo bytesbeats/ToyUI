@@ -8,11 +8,12 @@
     "build-sb": "storybook build",
     "build-sb-docs": "storybook build --docs",
     "start": "next start",
-    "lint": "biome check .",
+    "check": "biome check .",
     "sb": "storybook dev -p 6006",
     "sb-docs": "storybook dev -p 6006 --docs",
     "sb&next": "next dev -p 8080 & storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.10",
@@ -36,6 +37,7 @@
     "@biomejs/biome": "1.9.4",
     "@chromatic-com/storybook": "^3.2.3",
     "@headlessui/react": "^2.2.0",
+    "@storybook/addon-docs": "^8.4.7",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-interactions": "^8.4.7",
     "@storybook/addon-themes": "^8.4.7",
@@ -50,11 +52,8 @@
     "@types/react": "^19.0.4",
     "@types/react-dom": "^19.0.2",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.17.0",
-    "eslint-config-next": "15.1.4",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-storybook": "^0.11.2",
-    "eslint-plugin-unused-imports": "^4.1.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
     "postcss": "^8.4.49",
     "postcss-load-config": "^6.0.1",
     "storybook": "^8.4.7",
@@ -64,5 +63,10 @@
   "packageManager": "pnpm@9.15.1",
   "engines": {
     "node": ">=22.10"
+  },
+  "lint-staged": {
+    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc,mdx}": [
+      "biome check --files-ignore-unknown=true --no-errors-on-unmatched"
+    ]
   }
 }
