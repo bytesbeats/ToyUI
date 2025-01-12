@@ -48,9 +48,19 @@ const meta: Meta<typeof MobileSimulatorContainer> = {
 
 type MobileSimulatorContainerStory = StoryObj<typeof meta>;
 
-export const Dark: MobileSimulatorContainerStory = {
+export const Light: MobileSimulatorContainerStory = {
   args: {
     dark: false,
+    children: "",
+    battery: 100,
+    wifi: 3,
+    time: new Date(),
+  },
+};
+
+export const Dark: MobileSimulatorContainerStory = {
+  args: {
+    dark: true,
     children: "",
     battery: 100,
     wifi: 3,

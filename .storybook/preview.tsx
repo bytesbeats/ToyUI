@@ -3,6 +3,7 @@ import type { Preview } from "@storybook/react";
 import "../src/app/globals.css";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
+import { ThemeProvider } from "@storybook/theming";
 
 const preview: Preview = {
   parameters: {
@@ -18,6 +19,18 @@ const preview: Preview = {
   },
 
   globalTypes: {
+    theme: {
+      description: "Theme",
+      toolbar: {
+        title: "Theme",
+        icon: "circlehollow",
+        items: [
+          { value: "light", right: "🌞", title: "Light" },
+          { value: "dark", right: "🌙", title: "Dark" },
+        ],
+        showName: true,
+      },
+    },
     locale: {
       description: "Language",
       toolbar: {
@@ -33,6 +46,7 @@ const preview: Preview = {
 
   initialGlobals: {
     locale: "zh-CN",
+    theme: "light",
   },
   tags: [],
 };
@@ -40,7 +54,12 @@ const preview: Preview = {
 // 装饰器设置语言
 export const decorators = [
   (Story, context) => {
-    const { locale } = context.globals;
+    const { locale, theme } = context.globals;
+
+    console.debug("🐛🐛🐛 ----------------------------🐛🐛🐛");
+    console.debug("🐛🐛🐛 ::: theme:::", theme);
+    console.debug("🐛🐛🐛 ----------------------------🐛🐛🐛");
+
     useEffect(() => {
       if (locale !== i18n.language) {
         i18n.changeLanguage(context.globals.locale);
@@ -49,9 +68,17 @@ export const decorators = [
 
     return (
       <I18nextProvider i18n={i18n}>
-        <Suspense fallback={<i>Loading...</i>}>
-          <Story />
-        </Suspense>
+        <div
+          data-theme={theme}
+          style={{
+            minHeight: "100vh",
+            padding: "1rem",
+          }}
+        >
+          <Suspense fallback={<i>Loading...</i>}>
+            <Story />
+          </Suspense>
+        </div>
       </I18nextProvider>
     );
   },

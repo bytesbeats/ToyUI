@@ -9,7 +9,16 @@ const meta: Meta<typeof Icon> = {
 type IconStory = StoryObj<typeof meta>;
 
 export const Primary: IconStory = {
-  parameters: {},
+  globals: {},
+  parameters: {
+    layout: "centered",
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 100,
+      },
+    },
+  },
   args: {
     name: "x_guanzhu",
     color: IconColor.PRIMARY,
