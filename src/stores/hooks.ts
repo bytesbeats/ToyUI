@@ -7,11 +7,11 @@ import { AppStoreInitialize, useAppStore } from "./app.store";
 type useLanguageParams = [
   Locales,
   Localization,
-  ({ language }: { language: Locales }) => void
+  ({ language }: { language: Locales }) => void,
 ];
 type useInitializedPrams = [
   boolean | undefined,
-  (appInitialState: AppStoreInitialize) => void
+  (appInitialState: AppStoreInitialize) => void,
 ];
 
 // User
@@ -41,9 +41,11 @@ export const useLanguage = (): useLanguageParams =>
       state.settings.language,
       state.settings.localizations,
       state.upgradeSettings,
-    ])
+    ]),
   );
 
 // Initialized
 export const useInitialized = (): useInitializedPrams =>
-  useAppStore(useShallow((state) => [state.isInitialized, state.initialization]));
+  useAppStore(
+    useShallow((state) => [state.isInitialized, state.initialization]),
+  );

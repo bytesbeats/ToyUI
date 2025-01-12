@@ -8,7 +8,7 @@ import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { fromEvent, map, Subject, tap, throttleTime } from "rxjs";
+import { Subject, fromEvent, map, tap, throttleTime } from "rxjs";
 
 const Nav = () => {
   const darkRef = useRef<HTMLInputElement>(null);
@@ -31,19 +31,20 @@ const Nav = () => {
     if (document && document?.body && darkRef.current) {
       bodyRef.current = document.body;
       // theme event
-      const observableThemeChange$ = fromEvent(darkRef.current, "change").subscribe(
-        (event) => {
-          const isChecked = (event.target as HTMLInputElement).checked;
-          setDark(isChecked);
-        }
-      );
+      const observableThemeChange$ = fromEvent(
+        darkRef.current,
+        "change",
+      ).subscribe((event) => {
+        const isChecked = (event.target as HTMLInputElement).checked;
+        setDark(isChecked);
+      });
 
       // scroll event
       posY$
         .pipe(
           throttleTime(300),
           map((y) => y >= 120),
-          tap((show) => setShowMenu(show))
+          tap((show) => setShowMenu(show)),
         )
         .subscribe();
 
@@ -60,7 +61,7 @@ const Nav = () => {
     observableLanguageChange$
       .pipe(
         map((lang) => (lang === Locales.EN ? Locales.ZH : Locales.EN)),
-        tap((lang) => upgradeLanguage({ language: lang }))
+        tap((lang) => upgradeLanguage({ language: lang })),
       )
       .subscribe();
 
@@ -153,7 +154,9 @@ const Nav = () => {
                 className="w-[16px] h-[16px] md:w-[32px] md:h-[32px] swap-on fill-current"
               />
             </label>
-            {dark ? currentLocalizations?.nav?.dark : currentLocalizations?.nav?.light}
+            {dark
+              ? currentLocalizations?.nav?.dark
+              : currentLocalizations?.nav?.light}
           </div>
         </li>
         <li>

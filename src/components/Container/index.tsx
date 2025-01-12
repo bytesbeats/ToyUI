@@ -5,7 +5,7 @@
  *
  */
 export type ContainerProps = {
-  children: JSX.Element | JSX.Element[] | React.ReactNode | React.ReactNode[];
+  children?: React.ReactNode;
   full?: boolean;
   center?: boolean;
   className?: string;

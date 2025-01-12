@@ -1,6 +1,6 @@
-import { Locales } from '@locales/next-i18next.config';
-import { SearchParams } from 'next/dist/server/request/search-params';
-import { ReactNode } from 'react';
+import { Locales } from "@locales/next-i18next.config";
+import { SearchParams } from "next/dist/server/request/search-params";
+import { ReactNode } from "react";
 
 export type PageProps = {
   params: Promise<{ lang: Locales }>;

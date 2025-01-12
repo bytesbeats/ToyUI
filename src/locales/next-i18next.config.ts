@@ -1,7 +1,7 @@
 import { I18NConfig } from "next/dist/server/config-shared";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Localization = Record<string, any>;
+export type Localization = Record<string, unknown>;
 
 // 定义所有支持的语言常量
 

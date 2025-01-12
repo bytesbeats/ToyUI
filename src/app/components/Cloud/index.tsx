@@ -2,8 +2,8 @@ import "./style.css";
 
 import Image from "next/image";
 
-import cloud from "/public/images/cloud.svg";
 import cloud_mini from "/public/images/cloud-mini.svg";
+import cloud from "/public/images/cloud.svg";
 
 const Cloud = () => (
   <div className="fixed h-full w-full inset-x-0 inset-y-0">

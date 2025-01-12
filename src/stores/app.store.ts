@@ -1,14 +1,22 @@
 import { getLocalizations } from "@locales/localization";
 import { create } from "zustand";
-import { createJSONStorage, persist, subscribeWithSelector } from "zustand/middleware";
+import {
+  createJSONStorage,
+  persist,
+  subscribeWithSelector,
+} from "zustand/middleware";
 
 import {
+  SettingsSlice,
   createSettingsSlice,
   initializedSettings,
-  SettingsSlice,
 } from "./slices/settings.slice";
-import { createUISlice, initializedUISlice, UISlice } from "./slices/ui.slice";
-import { createUserSlice, initializedUser, UserSlice } from "./slices/user.slice";
+import { UISlice, createUISlice, initializedUISlice } from "./slices/ui.slice";
+import {
+  UserSlice,
+  createUserSlice,
+  initializedUser,
+} from "./slices/user.slice";
 
 // ------------------------STATE------------------------------------
 type RootState = {
@@ -23,7 +31,11 @@ export type RootActions = {
 };
 
 // 全局状态类型
-export type AppStore = UserSlice & SettingsSlice & UISlice & RootState & RootActions;
+export type AppStore = UserSlice &
+  SettingsSlice &
+  UISlice &
+  RootState &
+  RootActions;
 
 export type AppStoreInitialize = Pick<AppStore, "user" | "settings" | "ui">;
 
@@ -47,7 +59,8 @@ export const useAppStore = create<AppStore>()(
           // User Slice
           ...createUserSlice(set, get, store),
           // Root Slice
-          reset: () => set(() => ({ ...appInitialState, isInitialized: false }), false),
+          reset: () =>
+            set(() => ({ ...appInitialState, isInitialized: false }), false),
           initialization: (appInitState: AppStoreInitialize) =>
             set(
               (state) => ({
@@ -55,14 +68,14 @@ export const useAppStore = create<AppStore>()(
                 ...appInitState,
                 isInitialized: true,
               }),
-              false
+              false,
             ),
           logout: () =>
             set(
               () => ({
                 user: { isLogged: false },
               }),
-              false
+              false,
             ),
         };
       },
@@ -75,9 +88,9 @@ export const useAppStore = create<AppStore>()(
           ui: stage.ui,
           isInitialized: stage.isInitialized,
         }),
-      }
-    )
-  )
+      },
+    ),
+  ),
 );
 
 useAppStore.subscribe(
@@ -89,5 +102,5 @@ useAppStore.subscribe(
         localizations: localization,
       });
     }
-  }
+  },
 );
