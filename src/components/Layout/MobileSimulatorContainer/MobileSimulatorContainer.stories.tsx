@@ -3,6 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import MobileSimulatorContainer from ".";
 
 const meta: Meta<typeof MobileSimulatorContainer> = {
+  title: "Components/Layout/MobileSimulatorContainer",
   component: MobileSimulatorContainer,
   argTypes: {
     dark: {

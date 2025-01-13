@@ -1,0 +1,12 @@
+{
+  "plugins": [
+    "git-tag"
+  ],
+  "release": {
+    "prerelease": true
+  },
+  "owner": "bytesbeats",
+  "repo": "ToyUI",
+  "name": "guotingchao",
+  "email": "guotingchaopr@gmail.com"
+}

@@ -1,5 +1,5 @@
 import CookiePlanPage from "@app/components/Pages/cookie-plan";
-import Container from "@components/Container";
+import Container from "@components/Layout/Container";
 
 export default async function CookingPlan() {
   return (

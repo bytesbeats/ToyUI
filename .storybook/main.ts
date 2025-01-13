@@ -3,8 +3,8 @@ import * as path from "path";
 const config: StorybookConfig = {
   addons: [
     "@storybook/addon-essentials",
-    "@chromatic-com/storybook",
     "@storybook/addon-interactions",
+    "@chromatic-com/storybook",
   ],
   framework: {
     name: "@storybook/nextjs",

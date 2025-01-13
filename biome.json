@@ -23,6 +23,7 @@
       "jest",
       "package.json",
       ".storybook",
+      "*.json",
       "storybook-static"
     ]
   },

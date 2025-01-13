@@ -1,6 +1,6 @@
 "use client";
 
-import Container from "@components/Container";
+import Container from "@components/Layout/Container";
 import { useLanguage } from "@stores/hooks";
 
 export default function StatusPage() {
